@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { PreferencesProvider, usePreferences } from './context/PreferencesContext';
 import { TasksProvider } from './context/TasksContext';
 import { HistoryProvider } from './context/HistoryContext';
@@ -58,7 +58,7 @@ const AppContent: React.FC = () => {
 
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <PreferencesProvider>
         <TasksProvider>
           <HistoryProvider>
@@ -70,7 +70,7 @@ export const App: React.FC = () => {
           </HistoryProvider>
         </TasksProvider>
       </PreferencesProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
