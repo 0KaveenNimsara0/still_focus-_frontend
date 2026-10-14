@@ -20,11 +20,14 @@ export const WorkspacePage: React.FC<WorkspacePageProps> = ({
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 flex-1 flex flex-col justify-center">
       {distractionFree ? (
         /* Distraction-Free Mode: Centered timer with minimal floating exit button */
-        <div className="relative flex-1 flex flex-col items-center justify-center min-h-[70vh]">
-          <TimerDisplay />
+        <div className="relative flex-1 flex flex-col items-center justify-center min-h-[70vh] py-6 animate-fade-in">
+          <div className="w-full max-w-lg bg-[var(--surface-app)] border border-[var(--border-app)] rounded-3xl p-2 sm:p-6 shadow-xs">
+            <TimerDisplay />
+          </div>
           <button
+            type="button"
             onClick={onExitDistractionFree}
-            className="mt-8 flex items-center gap-2 px-4 py-2 rounded-full text-xs text-[var(--text-muted)] hover:text-[var(--text-app)] bg-[var(--surface-app)] border border-[var(--border-app)] hover:border-[var(--accent-app)] transition-colors shadow-2xs"
+            className="mt-8 flex items-center gap-2 px-4 py-2 rounded-full text-xs text-[var(--text-muted)] hover:text-[var(--text-app)] bg-[var(--surface-app)] border border-[var(--border-app)] hover:border-[var(--accent-app)] transition-colors shadow-2xs cursor-pointer"
             title="Exit distraction-free mode"
           >
             <Minimize2 size={14} />

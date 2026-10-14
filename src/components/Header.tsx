@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Maximize2, Minimize2 } from 'lucide-react';
 import { cn } from '../utils/formatters';
 
@@ -12,6 +12,16 @@ export const Header: React.FC<HeaderProps> = ({
   distractionFree,
   onToggleDistractionFree,
 }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleToggle = () => {
+    // If not currently on the workspace (home), navigate there so distraction-free mode is immediately visible
+    if (!distractionFree && location.pathname !== '/') {
+      navigate('/');
+    }
+    onToggleDistractionFree();
+  };
   return (
     <header
       className={cn(
@@ -96,9 +106,10 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="h-4 w-px bg-[var(--border-app)] mx-1" aria-hidden="true" />
 
         <button
-          onClick={onToggleDistractionFree}
+          type="button"
+          onClick={handleToggle}
           className={cn(
-            'p-1.5 rounded-full transition-colors text-[var(--text-muted)] hover:text-[var(--text-app)] hover:bg-[var(--surface-hover)]',
+            'p-1.5 rounded-full transition-colors cursor-pointer text-[var(--text-muted)] hover:text-[var(--text-app)] hover:bg-[var(--surface-hover)]',
             distractionFree && 'text-[var(--accent-app)] bg-[var(--accent-light)]'
           )}
           title={distractionFree ? 'Exit distraction-free mode' : 'Enter distraction-free mode'}
